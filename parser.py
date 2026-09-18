@@ -62,5 +62,4 @@ class Parser:
             token = self.advance()
             return nodos.NodoNumero(token.valor)
         
-        print(self.tokens[self.pos].tipo)
         raise Exception("Esperaba un número")

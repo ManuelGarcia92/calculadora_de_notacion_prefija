@@ -6,6 +6,7 @@ from evaluador import Evaluador
 def main() -> None:
     while True:
         limpiar_terminal()
+        print("[Ingrese break para salir]")
         texto = input(">>> : ")
         if texto == "break":
             break

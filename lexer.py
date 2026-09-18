@@ -9,25 +9,25 @@ class Lexer:
     def __init__(self, texto):
         self.texto = texto
         self.limite = len(texto)
-        self.puntero = 0
+        self.pos = 0
         
     def advance(self):
-        str_actual = self.texto[self.puntero]
-        self.puntero += 1
+        str_actual = self.texto[self.pos]
+        self.pos += 1
         return str_actual
     
     def peek(self, pasos=0):
-        return self.texto[self.puntero + pasos]
+        return self.texto[self.pos + pasos]
     
     def leer_palabra(self):
         buffer = ""
-        while self.puntero < self.limite and (self.peek().isalnum() or self.peek() == "_"):
+        while self.pos < self.limite and (self.peek().isalnum() or self.peek() == "_"):
             buffer += self.advance() 
         return Token("IDENTIFICADOR", buffer)    
 
     def leer_simbolo(self):
-        if self.puntero < self.limite:
-            if self.puntero < self.limite - 1 and self.peek() + self.peek(1) in OPERADORES_DOBLES:
+        if self.pos < self.limite:
+            if self.pos < self.limite - 1 and self.peek() + self.peek(1) in OPERADORES_DOBLES:
                 valor_token = self.advance()
                 valor_token += self.advance()
                 tipo_token = OPERADORES_DOBLES[valor_token]
@@ -39,7 +39,7 @@ class Lexer:
     def leer_numero(self):
         contador_punto_decimal = 0
         buffer = ""
-        while self.puntero < self.limite and (self.peek().isdigit() or self.peek() == "."):
+        while self.pos < self.limite and (self.peek().isdigit() or self.peek() == "."):
             if self.peek() == ".":
                 contador_punto_decimal += 1
             buffer += self.advance()
@@ -58,7 +58,7 @@ class Lexer:
     def tokenizar(self):
         tokens  = [] 
         
-        while self.puntero < self.limite:
+        while self.pos < self.limite:
             char_actual = self.peek()
 
             if char_actual.isspace():

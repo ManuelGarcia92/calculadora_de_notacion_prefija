@@ -7,15 +7,14 @@ class NodoOperacion:
     def evaluar(self):
         valor_hijos = [hijo.evaluar() for hijo in self.hijos]
 
-        if self.operador in ("**, $"):
+        if self.operador in ("**", "$"):
             resultado = valor_hijos[-1]
             for valor in reversed(valor_hijos[:-1]):
                 resultado = OPERACIONES[self.operador](valor, resultado)
-            return resultado
-        
-        resultado = valor_hijos[0]
-        for valor in valor_hijos[1:]:
-            resultado = OPERACIONES[self.operador](resultado, valor)
+        else:
+            resultado = valor_hijos[0]
+            for valor in valor_hijos[1:]:
+                resultado = OPERACIONES[self.operador](resultado, valor)
         return resultado
        
 class NodoNumero:

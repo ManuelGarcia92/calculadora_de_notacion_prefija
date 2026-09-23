@@ -6,26 +6,26 @@ class Token:
         self.valor = valor
         
 class Lexer:
-    def __init__(self, texto):
+    def __init__(self, texto: str):
         self.texto = texto
         self.limite = len(texto)
         self.pos = 0
         
-    def advance(self):
+    def advance(self) -> str:
         str_actual = self.texto[self.pos]
         self.pos += 1
         return str_actual
     
-    def peek(self, pasos=0):
+    def peek(self, pasos=0) -> str:
         return self.texto[self.pos + pasos]
     
-    def leer_palabra(self):
+    def leer_palabra(self) -> Token:
         buffer = ""
         while self.pos < self.limite and (self.peek().isalnum() or self.peek() == "_"):
             buffer += self.advance() 
         return Token("IDENTIFICADOR", buffer)    
 
-    def leer_simbolo(self):
+    def leer_simbolo(self) -> Token:
         if self.pos < self.limite:
             if self.pos < self.limite - 1 and self.peek() + self.peek(1) in OPERADORES_DOBLES:
                 valor_token = self.advance()
@@ -36,7 +36,7 @@ class Lexer:
                 tipo_token = OPERADORES_SIMPLES[valor_token]
             return Token(tipo_token, valor_token)   
             
-    def leer_numero(self):
+    def leer_numero(self) -> Token:
         contador_punto_decimal = 0
         buffer = ""
         while self.pos < self.limite and (self.peek().isdigit() or self.peek() == "."):
@@ -55,7 +55,7 @@ class Lexer:
             return Token("NUMERO", float(buffer))
         return Token("NUMERO", int(buffer))
         
-    def tokenizar(self):
+    def tokenizar(self) -> list:
         tokens  = [] 
         
         while self.pos < self.limite:

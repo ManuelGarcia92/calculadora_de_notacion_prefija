@@ -28,7 +28,7 @@ class Parser:
             return self.advance()
         raise Exception(mensaje_error) 
 
-    def parsear(self):
+    def parsear(self) -> list:
         instrucciones = []
         
         if self.match("FIN"):

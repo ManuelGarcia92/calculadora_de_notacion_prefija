@@ -4,7 +4,7 @@ class NodoOperacion:
         self.operador = operador
         self.hijos = []
 
-    def evaluar(self):
+    def evaluar(self) -> int | float:
         valor_hijos = [hijo.evaluar() for hijo in self.hijos]
 
         if self.operador in ("**", "$"):
@@ -21,5 +21,5 @@ class NodoNumero:
     def __init__(self, valor):
         self.valor = valor
 
-    def evaluar(self):
+    def evaluar(self) -> int | float:
         return self.valor

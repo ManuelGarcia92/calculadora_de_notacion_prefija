@@ -30,7 +30,6 @@ class Parser:
 
     def parsear(self) -> list:
         instrucciones = []
-        
         if self.match("FIN"):
             raise Exception("Expresión vacia")
         
@@ -38,19 +37,14 @@ class Parser:
 
         if self.peek() and not self.match("FIN"):
             raise Exception("Quedan tokens sin procesar")
-    
-        return  instrucciones
+        return instrucciones
     
     def expre(self):
         self.consumir("LIS_IZQ", "La operación debe empezar con un [")
-        operador = self.advance()
-        if not operador.valor in SIMBOLOS:
-            raise Exception("Esperaba un operador")
+        operador = self.consumir("OP", "Esperaba un operador")
         nodo = nodos.NodoOperacion(operador.valor)
-
         while not self.match("LIS_DER"):
             nodo.hijos.append(self.factor())
-
         self.consumir("LIS_DER", "La operación debe terminar con un ]")
         return nodo
     

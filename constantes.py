@@ -14,12 +14,12 @@ OPERACIONES = {
 SIMBOLOS = {"+", "-", "*", "/", "%", "$", "//", "**"}
 
 OPERADORES_SIMPLES = {
-    "+" : "SUMA",
-    "-" : "RESTA",
-    "*" : "MULTI",
-    "/" : "DIV",
-    "$" : "RAIZ_ENESIMA",
-    "%" : "MOD",
+    "+" : "OP",
+    "-" : "OP",
+    "*" : "OP",
+    "/" : "OP",
+    "$" : "OP",
+    "%" : "OP",
     "[" : "LIS_IZQ",
     "]" : "LIS_DER"
 }

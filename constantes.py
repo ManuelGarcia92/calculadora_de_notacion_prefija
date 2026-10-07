@@ -11,8 +11,6 @@ OPERACIONES = {
     "+" : lambda x, y: x + y
 } 
 
-SIMBOLOS = {"+", "-", "*", "/", "%", "$", "//", "**"}
-
 OPERADORES_SIMPLES = {
     "+" : "OP",
     "-" : "OP",

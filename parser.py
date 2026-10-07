@@ -1,4 +1,3 @@
-from constantes import SIMBOLOS
 import nodos
 
 class Parser:

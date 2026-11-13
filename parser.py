@@ -42,7 +42,7 @@ class Parser:
         self.consumir("LIS_IZQ", "La operación debe empezar con un [")
         operador = self.consumir("OP", "Esperaba un operador")
         nodo = nodos.NodoOperacion(operador.valor)
-        while not self.match("LIS_DER"):
+        while not self.match("LIS_DER") and self.match("FIN"):
             nodo.hijos.append(self.factor())
         self.consumir("LIS_DER", "La operación debe terminar con un ]")
         return nodo

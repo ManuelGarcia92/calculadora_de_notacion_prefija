@@ -2,6 +2,7 @@ from extras import limpiar_terminal, pausa
 from lexer import Lexer
 from parser import Parser
 from evaluador import Evaluador
+import readline
 
 def main() -> None:
     while True:
